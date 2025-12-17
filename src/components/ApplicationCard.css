@@ -143,3 +143,54 @@
   gap: 12px;
   justify-content: flex-end;
 }
+
+/* Priority Badge */
+.priority-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.priority-high {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--danger-color);
+}
+
+/* Deadline Highlighting */
+.deadline-upcoming {
+  background-color: rgba(245, 158, 11, 0.08);
+  padding: 8px;
+  border-radius: 6px;
+  border-left: 3px solid var(--warning-color);
+}
+
+.badge-upcoming {
+  margin-left: 8px;
+  background-color: var(--warning-color);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* Timeline Button */
+.btn-timeline {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  border: 2px dashed var(--border-color);
+  background: transparent;
+  border-radius: 8px;
+  color: var(--primary-color);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-timeline:hover {
+  background-color: var(--light-bg);
+  border-color: var(--primary-color);
+}

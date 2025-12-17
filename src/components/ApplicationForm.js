@@ -12,12 +12,19 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
     status: editApplication?.status || 'Applied',
     notes: editApplication?.notes || '',
     jobUrl: editApplication?.jobUrl || '',
+    interviewDate: editApplication?.interviewDate 
+      ? new Date(editApplication.interviewDate).toISOString().split('T')[0] 
+      : '',
+    followUpDate: editApplication?.followUpDate 
+      ? new Date(editApplication.followUpDate).toISOString().split('T')[0] 
+      : '',
+    priority: editApplication?.priority || 'Medium',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { addApplication, updateApplication } = useContext(ApplicationContext);
 
-  const { companyName, role, appliedDate, status, notes, jobUrl } = formData;
+  const { companyName, role, appliedDate, status, notes, jobUrl, interviewDate, followUpDate, priority } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -81,18 +88,6 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="appliedDate">Applied Date *</label>
-              <input
-                type="date"
-                id="appliedDate"
-                name="appliedDate"
-                value={appliedDate}
-                onChange={onChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
               <label htmlFor="status">Status *</label>
               <select
                 id="status"
@@ -106,6 +101,44 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
                 <option value="Rejected">Rejected</option>
                 <option value="Offer">Offer</option>
               </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="priority">Priority</label>
+              <select
+                id="priority"
+                name="priority"
+                value={priority}
+                onChange={onChange}
+              >
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="interviewDate">Interview Date</label>
+              <input
+                type="date"
+                id="interviewDate"
+                name="interviewDate"
+                value={interviewDate}
+                onChange={onChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="followUpDate">Follow-Up Date</label>
+              <input
+                type="date"
+                id="followUpDate"
+                name="followUpDate"
+                value={followUpDate}
+                onChange={onChange}
+              />
             </div>
           </div>
 
