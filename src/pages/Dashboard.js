@@ -4,10 +4,11 @@ import { AuthContext } from '../context/AuthContext';
 import { ApplicationContext } from '../context/ApplicationContext';
 import ApplicationForm from '../components/ApplicationForm';
 import ApplicationCard from '../components/ApplicationCard';
+import DeadlineAlerts from '../components/DeadlineAlerts';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, token } = useContext(AuthContext);
   const { applications, stats, loading, fetchApplications, fetchStats } = useContext(ApplicationContext);
   const [showForm, setShowForm] = useState(false);
   const [editApplication, setEditApplication] = useState(null);
@@ -92,6 +93,9 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
+        {/* Deadline Alerts */}
+        <DeadlineAlerts token={token} />
 
         {/* Controls */}
         <div className="controls">
