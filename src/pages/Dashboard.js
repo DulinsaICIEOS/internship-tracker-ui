@@ -47,7 +47,7 @@ const Dashboard = () => {
         <div className="container">
           <div className="header-content">
             <div className="header-left">
-              <h1>🎯 Internship Tracker</h1>
+              <h1>🎯 Job Application Tracker</h1>
               <p>Welcome back, {user?.name}!</p>
             </div>
             <button onClick={handleLogout} className="btn btn-secondary">
@@ -129,7 +129,7 @@ const Dashboard = () => {
             <div className="empty-state">
               <div className="empty-icon">📭</div>
               <h3>No applications yet</h3>
-              <p>Start tracking your internship applications by clicking "Add Application"</p>
+              <p>Start tracking your job applications by clicking "Add Application"</p>
               <button onClick={handleAddClick} className="btn btn-primary">
                 ➕ Add Your First Application
               </button>
