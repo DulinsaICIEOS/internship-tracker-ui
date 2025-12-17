@@ -94,12 +94,19 @@ const ApplicationCard = ({ application, onEdit }) => {
           <button 
             className="btn-timeline"
             onClick={() => setShowTimeline(!showTimeline)}
+            aria-expanded={showTimeline}
+            aria-controls={`timeline-${application._id}`}
+            aria-label={showTimeline ? 'Hide application timeline' : 'View application timeline'}
           >
             {showTimeline ? '▲ Hide Timeline' : '▼ View Timeline'}
           </button>
         )}
 
-        {showTimeline && <Timeline statusHistory={application.statusHistory} />}
+        {showTimeline && (
+          <div id={`timeline-${application._id}`} role="region" aria-label="Application status timeline">
+            <Timeline statusHistory={application.statusHistory} />
+          </div>
+        )}
       </div>
 
       <div className="card-actions">

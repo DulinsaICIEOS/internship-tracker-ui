@@ -78,3 +78,42 @@
   background-color: rgba(245, 158, 11, 0.1);
   color: var(--warning-color);
 }
+
+/* Loading and Error States */
+.alert-loading,
+.alert-error {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.alert-loading {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+.loading-spinner {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.alert-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+  font-weight: 500;
+}
+
+.deadline-alerts-error {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: var(--danger-color);
+}

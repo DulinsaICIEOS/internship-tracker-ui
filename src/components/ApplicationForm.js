@@ -88,6 +88,18 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
 
           <div className="form-row">
             <div className="form-group">
+              <label htmlFor="appliedDate">Applied Date *</label>
+              <input
+                type="date"
+                id="appliedDate"
+                name="appliedDate"
+                value={appliedDate}
+                onChange={onChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
               <label htmlFor="status">Status *</label>
               <select
                 id="status"
@@ -102,7 +114,9 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
                 <option value="Offer">Offer</option>
               </select>
             </div>
+          </div>
 
+          <div className="form-row">
             <div className="form-group">
               <label htmlFor="priority">Priority</label>
               <select
@@ -116,9 +130,7 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
                 <option value="High">High</option>
               </select>
             </div>
-          </div>
 
-          <div className="form-row">
             <div className="form-group">
               <label htmlFor="interviewDate">Interview Date</label>
               <input
@@ -129,7 +141,9 @@ const ApplicationForm = ({ onClose, editApplication = null }) => {
                 onChange={onChange}
               />
             </div>
+          </div>
 
+          <div className="form-row">
             <div className="form-group">
               <label htmlFor="followUpDate">Follow-Up Date</label>
               <input

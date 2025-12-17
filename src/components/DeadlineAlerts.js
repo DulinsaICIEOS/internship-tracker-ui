@@ -1,22 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ApplicationContext } from '../context/ApplicationContext';
-import axios from 'axios';
+import apiClient from '../utils/api';
 import { format } from 'date-fns';
 import './DeadlineAlerts.css';
 
 const DeadlineAlerts = ({ token }) => {
   const [upcomingDeadlines, setUpcomingDeadlines] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUpcomingDeadlines = async () => {
       try {
-        const res = await axios.get('/api/applications/upcoming/deadlines', {
-          headers: { 'x-auth-token': token }
-        });
+        setLoading(true);
+        setError(null);
+        const res = await apiClient.get('/api/applications/upcoming/deadlines');
         setUpcomingDeadlines(res.data);
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching deadlines:', err);
+        setError('Could not load upcoming deadlines. Please try again later.');
+        
+        // Optional: Send to error tracking service
+        // if (window.Sentry) {
+        //   window.Sentry.captureException(err);
+        // }
       } finally {
         setLoading(false);
       }
@@ -27,7 +34,27 @@ const DeadlineAlerts = ({ token }) => {
     }
   }, [token]);
 
-  if (loading || upcomingDeadlines.length === 0) {
+  if (loading) {
+    return (
+      <div className="deadline-alerts">
+        <div className="alert-loading">
+          <span className="loading-spinner">⏳</span> Loading upcoming deadlines...
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="deadline-alerts deadline-alerts-error">
+        <div className="alert-error">
+          <span>⚠️</span> {error}
+        </div>
+      </div>
+    );
+  }
+
+  if (upcomingDeadlines.length === 0) {
     return null;
   }
 
